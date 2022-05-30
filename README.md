@@ -7,7 +7,7 @@
 
 
 ## kubectl ile ilgili bir çok komut var bunları öğrenmek ve nasıl kullanıldıgını görmek için --help komutu bize kullanım şekli ve acıklamalrı veriyor
-	-> kubectl cp --help
+	kubectl cp --help
 
 
 ## Kubectl in baktıgı config dosyasındaki Context leri listeler
