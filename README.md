@@ -12,56 +12,57 @@
 
 ## Kubectl in baktıgı config dosyasındaki Context leri listeler
 ## Yanında * olan default kullanılan context aynı docker context deki gibi
-	-> kubectl config get-contexts
+    kubectl config get-contexts
 
 ## Varsayılan contexti verir
-	-> kubectl config current-context
+	kubectl config current-context
 
 ## Başka bir sunucu da işlem yapmak istersem docker da yaptıgımız gibi context değiştirmek gerekiyor. Docker daki karşılığı 'docker context use <contextname>'
 ## Bundan sonrakiş tüm komutlar seçili context de çalışır
-	-> kubectl config use-context <contextname>
+	kubectl config use-context <contextname>
 
 ## cluster-info	 -> Üzerinde işlem yaptıgımız cluster hakkında temel bilgiler verir
-	-> kubectl cluster-info	
+	kubectl cluster-info	
 	
 ## kubectl deki her bir komut default namespace üzerinden çalışır, fakat biz istersek çalışacak komut için namespace belirtebiliriz	-n <namespace>
 ## -A tüm namespace leri kapsar
-	-> kubectl get pods -n <namespacename>
-	-> kubectl get pod -A
+	kubectl get pods -n <namespacename>
+	kubectl get pod -A
 
 ## kubectl için ekran cıktısını -o ile farklı bir output olarak özelleştirebiliriz. pipe da kullanabiliyoruz jq
-	-> kubectl get pods - o json|yaml|table|wide|custom-columns	
+	kubectl get pods - o json|yaml|table|wide|custom-columns	
 	
 ## explain -> kubectl objeleri için bilgi veren komut explain --help den fark help komutların bilgisini veriyor
-	-> kubectl explain pod	
+	kubectl explain pod	
 
 ------------------------------------------POD------------------------------------------------------------------
 ## POD	
-	# kubertenes üzerinde objeler yaratılır pod bir nevi container gibi düşünebiliriz hatta container collection
-	# her bir pod un eşsiz bir uid si vardır
-	# her bir pod un eşsiz bir ip adresi vardır
-	# podlar kubernates de oluşturup yönetebileceğimiz en kücük birimdir
-	# aynı pod üzerinde birden falza container çalıştırılabilir ama çoğu durumda tek container barındırır
-	# docker run gibi kubectl run ile de yeni bir pod image belirtilerek oluşturulabiliyor, kapatıldıgında da yeniden başlamıyacak
-	-> kubectl run firstpod --image=ngnx --restart=Never
+* kubertenes üzerinde objeler yaratılır pod bir nevi container gibi düşünebiliriz hatta container collection
+* her bir pod un eşsiz bir uid si vardır
+* her bir pod un eşsiz bir ip adresi vardır
+* podlar kubernates de oluşturup yönetebileceğimiz en kücük birimdir
+* aynı pod üzerinde birden falza container çalıştırılabilir ama çoğu durumda tek container barındırır
+
+## docker run gibi kubectl run ile de yeni bir pod image belirtilerek oluşturulabiliyor, kapatıldıgında da yeniden başlamıyacak
+     kubectl run firstpod --image=ngnx --restart=Never
 
 ## describe objenin detayını verir, Pod ne zaman oluşmuş, pod içinde çalışan container id si yada pod uzerindeki event ları verir,pod üzerinde uygulanan tüm işlemleri buradan takip edebiliriz
-	# kubectl describe <object> <name>
-	-> kubectl describe pods firstpod
+	kubectl describe <object> <name>
+	kubectl describe pods firstpod
 
 ## Logs -> pod yada ilgili obje üzerindeki logları verir
-	-> kubectl logs firstpod
+	kubectl logs firstpod
 	# -f ile canlı log yapısına geçilebiliyor, sürekli aynı komutu calıstırıp son duruma bakmaya gerek yok
 
 ## exec -> pod üzerinde komut çalıştırmaya yarıyor, docker exec ile aynı
-	-> kubectl exec -it firstpod -- /bin/sh	
+	kubectl exec -it firstpod -- /bin/sh	
 
 ## delete , production ortamında dikatli kullanmak lazım onay mekanizması yok
-	-> kubectl delete pods firstpod
+	kubectl delete pods firstpod
 
 ## apply -> el ile manuel pod oluşturmak yerine yaml dosyası üzerinden olası tüm config leri girerek te oluşturabiliriz
 ## oluşan file çalıştırmak için apply komutu kullanılır
-	-> kubectl apply -f pod1.yaml	
+	kubectl apply -f pod1.yaml	
 	# edit -> kubectl edit pods firstpod dediğimizde mevcut pod üzerinde editleme yapılabiliyor, pod un yaml hali ekrana gelir
 
 ## kubectl get pods -w	watch modda sürekli izler 	
