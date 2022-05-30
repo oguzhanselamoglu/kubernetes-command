@@ -1,9 +1,9 @@
 ## minikube komuttları
-    minikube get nodes (aktif node bilgsini verir)
-    minikube start minikube kubernetes i local ortamda aktif eder ve geçerli docker üzerinde bir node acar
-    minikube stop mevcut node durdurur
-    minikube delete -> herşeyi siler baştan başlamanın en kolay yolu sonrasında start diyeceğiz
-    minikube service <servicename> --url
+ **minikube get nodes**: (aktif node bilgsini verir)
+ **minikube start**: minikube kubernetes i local ortamda aktif eder ve geçerli docker üzerinde bir node acar
+ **minikube stop**: mevcut node durdurur
+ **minikube delete**: Herşeyi siler baştan başlamanın en kolay yolu sonrasında start diyeceğiz
+ **minikube service <servicename> --url**
 
 
 ## kubectl ile ilgili bir çok komut var bunları öğrenmek ve nasıl kullanıldıgını görmek için --help komutu bize kullanım şekli ve acıklamalrı veriyor
