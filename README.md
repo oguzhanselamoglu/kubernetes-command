@@ -35,7 +35,7 @@
 ## explain -> kubectl objeleri için bilgi veren komut explain --help den fark help komutların bilgisini veriyor
 	kubectl explain pod	
 
-------------------------------------------POD------------------------------------------------------------------
+
 ## POD	
 * kubertenes üzerinde objeler yaratılır pod bir nevi container gibi düşünebiliriz hatta container collection
 * her bir pod un eşsiz bir uid si vardır
@@ -79,15 +79,14 @@
     kubectl label pods pod9 app- (label silme)
     kubectl delete -f .\podlabel.yaml (dosya içindeki tüm podları siler)
 
--------------------------------------NAMESPACE----------------------------------------------------------------------
-## kubectl create namespace app1 ( app1 adında namespace yaratır)
-## kubectl get namespaces (namespace listesi verir)
-## kubectl get pods -n <namespacename> (ilgili namespace deki pod ları listeler)
+## NAMESPACE
+    kubectl create namespace app1 ( app1 adında namespace yaratır)
+    kubectl get namespaces (namespace listesi verir)
+    ubectl get pods -n <namespacename> (ilgili namespace deki pod ları listeler)
 
 
 ## Deployment
     kubectl create deployment firstdeployment --image=nginx:latest --replicas=2
-
     kubectl set image deployment/firstdeployment nginx=httpd (mevcut deployment daki image guncellemeye yarıyor)
 
 # deployment ile pod sayısını ayarlıyoruz
@@ -118,11 +117,11 @@
      kubectl get endpoints -> endpoint üzerinden oluşan ipleri ve yönlenen portları görebiliriz
 
 ## Liveness probe
-# kubelet normalde çalışmayan hataya düşmüş yada durmuş pod ları yeniden başlatarak yada yenisini üreterek çalışmaya zorlar
-# sürekliliği sağlar fakat pod düzgün çalışır ama içindeki uygulama düzgün çalışmaz ise bunu yakalayamaz
-# bunu ise LivenessProbe lar vasıtasıyla farkedebiliriz, pod içinden bir uygulama claıstırarak içerdeki uygulamanın durumunu gözlemleyebiliriz
-# uygulama içindeki bir endpointe http istek atarak heltcheck yapılarak kontrol sağlanabilir
-# httpGet ve tcp yada herhangi bir dosya kontrolü yapılabilir
+* kubelet normalde çalışmayan hataya düşmüş yada durmuş pod ları yeniden başlatarak yada yenisini üreterek çalışmaya zorlar
+* sürekliliği sağlar fakat pod düzgün çalışır ama içindeki uygulama düzgün çalışmaz ise bunu yakalayamaz
+* bunu ise LivenessProbe lar vasıtasıyla farkedebiliriz, pod içinden bir uygulama claıstırarak içerdeki uygulamanın durumunu gözlemleyebiliriz
+* uygulama içindeki bir endpointe http istek atarak heltcheck yapılarak kontrol sağlanabilir
+* httpGet ve tcp yada herhangi bir dosya kontrolü yapılabilir
     spec:
     livenesProbe:
         httpGet:
@@ -131,20 +130,17 @@
         periodSeconds: 3
         initialDelaySeconds: 5 //5 sn bekler 3 sn aralıkla dener
 
--------------------------------------------------------------------
-
--------------Readiness probe---------------------------------------
-# uygulama ayağa kalkar fakat bazı verileri cekebilir ve ayağa kalkar kalkmaz service hazır hale gelmeyebilir
-# readiness check eder ve pod hazır olana kadar bekler, hazır olduktan sonra trafik akmaya başlar
-# pod un service sunmaya hazır hale gelmesini garanti eder, buradaki pod hazır hale geldikten sonra eski pod terminete eder
 
 
+## Readiness probe
+* Uygulama ayağa kalkar fakat bazı verileri cekebilir ve ayağa kalkar kalkmaz service hazır hale gelmeyebilir
+* Readiness check eder ve pod hazır olana kadar bekler, hazır olduktan sonra trafik akmaya başlar
+* Pod un service sunmaya hazır hale gelmesini garanti eder, buradaki pod hazır hale geldikten sonra eski pod terminete eder
 
 
-----------------------------------------------------------------------
 
-## Persistent volume cluster dışında tutulur bu sayede pod yaşam süresinden bağımsız olur (Azur Disk,aws, google depolama çözümleriyle konuşabilir)
-## emptyDir -> Geçici volum ilk olarak bir Pod bir noda atandıgında oluşturulur ve u Pod o node da çalıştığı sürece var olur. Başlangıçta boştur Pod içindeki containerlar emptyDir volume deki dosyaları okuyabilir ve yazabilir ancak bu birim her kapsayıcıda farklı yollara maplenmiş olabilir pod silindiğinde volume de gider
+# Persistent volume cluster dışında tutulur bu sayede pod yaşam süresinden bağımsız olur (Azur Disk,aws, google depolama çözümleriyle konuşabilir)
+# emptyDir -> Geçici volum ilk olarak bir Pod bir noda atandıgında oluşturulur ve u Pod o node da çalıştığı sürece var olur. Başlangıçta boştur Pod içindeki containerlar emptyDir volume deki dosyaları okuyabilir ve yazabilir ancak bu birim her kapsayıcıda farklı yollara maplenmiş olabilir pod silindiğinde volume de gider
 
 	volumeMounts:
 	- name: cache-vol
@@ -153,7 +149,7 @@
     - name: cache-vol
     emptydir: {}
 
-## hostPath  -> Folder bazlı maplenir container silinsede halen durur
+# hostPath  -> Folder bazlı maplenir container silinsede halen durur
 
 -----------------------------------------------------------------------
 
@@ -161,12 +157,12 @@
 
 
 ## env değerlerini listeler pod içindeki
--> kubectl exec <podname> --printenv
+    kubectl exec <podname> --printenv
 
 ## kendi bilgisayarımızdaki portu pod daki uygulamanın portuna gönderir
--> kubectl port-forward veboni 8080:80 (Port yönlendirmeyi yapar)
+    kubectl port-forward veboni 8080:80 (Port yönlendirmeyi yapar)
 
 
-## kubectl describe secret -n kube-system
+    kubectl describe secret -n kube-system
 
-## kubectl proxy
+    kubectl proxy
