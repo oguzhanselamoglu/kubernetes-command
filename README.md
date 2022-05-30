@@ -69,15 +69,15 @@
 
 ## kubectl port-forward firstpod 8080:80 (Port yönlendirmeyi yapar)
 
---------------------------------------LABEL-------------------------------------------------------------------------
-## kubectl get pods -l "app" --show-labels (podlar arasında lable  a göre filtreleme yapabiliyoruz -l ifadesi ile)
-## kubectl get pods -l "app=firstapp" --show-labels
-## kubectl get pods -l "app=firstapp,tier=backend" --show-labels (selector de , ve anlamına geliyor)
-## kubectl get pods -l 'app in (firstapp,secondapp)' --show-labels
-## kubectl get pods -l 'app notin (firstapp)' --show-labels (olmayanları listele)
-## kubectl label pods pod9 app=thirdapp (mevcut bir pod a label ekleme)
-## kubectl label pods pod9 app- (label silme)
-## kubectl delete -f .\podlabel.yaml (dosya içindeki tüm podları siler)
+## LABEL
+    kubectl get pods -l "app" --show-labels (podlar arasında lable  a göre filtreleme yapabiliyoruz -l ifadesi ile)
+    kubectl get pods -l "app=firstapp" --show-labels
+    kubectl get pods -l "app=firstapp,tier=backend" --show-labels (selector de , ve anlamına geliyor)
+    kubectl get pods -l 'app in (firstapp,secondapp)' --show-labels
+    kubectl get pods -l 'app notin (firstapp)' --show-labels (olmayanları listele)
+    kubectl label pods pod9 app=thirdapp (mevcut bir pod a label ekleme)
+    kubectl label pods pod9 app- (label silme)
+    kubectl delete -f .\podlabel.yaml (dosya içindeki tüm podları siler)
 
 -------------------------------------NAMESPACE----------------------------------------------------------------------
 ## kubectl create namespace app1 ( app1 adında namespace yaratır)
@@ -85,53 +85,51 @@
 ## kubectl get pods -n <namespacename> (ilgili namespace deki pod ları listeler)
 
 
--------------------------------------------Deployment----------------------------------------------
-## kubectl create deployment firstdeployment --image=nginx:latest --replicas=2
+## Deployment
+    kubectl create deployment firstdeployment --image=nginx:latest --replicas=2
 
-## kubectl set image deployment/firstdeployment nginx=httpd (mevcut deployment daki image guncellemeye yarıyor)
+    kubectl set image deployment/firstdeployment nginx=httpd (mevcut deployment daki image guncellemeye yarıyor)
 
-## deployment ile pod sayısını ayarlıyoruz
+# deployment ile pod sayısını ayarlıyoruz
 
-## kubectl scale deployment firstdeployment --replicas=5 (mevcut delpoyment da pod sayısını 5 e cıkartır)
+    kubectl scale deployment firstdeployment --replicas=5 (mevcut delpoyment da pod sayısını 5 e cıkartır)
 
-## rollout -> en son yapılan değişikliğği geri alır
-	-> kubectl rollout undo deployment firstdeployment
+# rollout -> en son yapılan değişikliğği geri alır
+    kubectl rollout undo deployment firstdeployment
 
-## iki önemli konu var recreate ve rolling , deployment stretejisi olarak bu iki özellikten birini kullanırız
-## recreate tüm podları siler yeniden oluşturur, kısa süreli bir geçikme olabilir, iki versiyonun sıkıntılı olabileceği durumlarda tercih edilir
-## rolling -> herhangi bir streteji belirtmessek default uygulanır
-## aşamalı olarak değişiklik yapar, eş zamanlı silinip oluşturulacak pod sayısını belirtebiliyoruz
-## sistemde kesiti olmadan devam eder
-## rolout history de yapılan tüm değişiklikleri görüyoruz
-	->kubectl rollout history deployment rolldeployment 
+* iki önemli konu var recreate ve rolling , deployment stretejisi olarak bu iki özellikten birini kullanırız
+* recreate tüm podları siler yeniden oluşturur, kısa süreli bir geçikme olabilir, iki versiyonun sıkıntılı olabileceği durumlarda tercih edilir
+* rolling -> herhangi bir streteji belirtmessek default uygulanır
+* aşamalı olarak değişiklik yapar, eş zamanlı silinip oluşturulacak pod sayısını belirtebiliyoruz
+* sistemde kesiti olmadan devam eder
+* rolout history de yapılan tüm değişiklikleri görüyoruz
+	kubectl rollout history deployment rolldeployment 
 	
---------------------------------------------REPLICASET------------------------------------------------
-## ReplicaSet in amacı herhangi bir zamanda çalışan kararlı bir recpica Pod setini sürdürmek. Bu nedenle belirli sayıda Pod un kullanılabilirliğini garanti eder
-## Deployment recplicaSetin bir üst objesidir
-## Podları replicaSet yönetir
-## replicaSet üzerinde image de yapılan değişiklik hemen Pod lara yansımaz, bu yuzden replicaSet üzerinden değil de deployment üzerinden değişiklik yapıyoruz
+## REPLICASET
+* ReplicaSet in amacı herhangi bir zamanda çalışan kararlı bir recpica Pod setini sürdürmek. Bu nedenle belirli sayıda Pod un kullanılabilirliğini garanti eder
+* Deployment recplicaSetin bir üst objesidir
+* Podları replicaSet yönetir
+* replicaSet üzerinde image de yapılan değişiklik hemen Pod lara yansımaz, bu yuzden replicaSet üzerinden değil de deployment üzerinden değişiklik yapıyoruz
 
 
--------------------------------------Network---------------------
-# Aynı cluster içindeki tüm pod lar varsayılan olarak birbiriyle haberleşir herhangi bir kısıtlama olmaz
+## Network
+* Aynı cluster içindeki tüm pod lar varsayılan olarak birbiriyle haberleşir herhangi bir kısıtlama olmaz
+* service tarafında ClusterIp, NodePortIp, LoadBalancer 3 tip var
+     kubectl get endpoints -> endpoint üzerinden oluşan ipleri ve yönlenen portları görebiliriz
 
-# service tarafında ClusterIp, NodePortIp, LoadBalancer 3 tip var
-
-## kubectl get endpoints -> endpoint üzerinden oluşan ipleri ve yönlenen portları görebiliriz
-
--------------Liveness probe-----------------------------------
+## Liveness probe
 # kubelet normalde çalışmayan hataya düşmüş yada durmuş pod ları yeniden başlatarak yada yenisini üreterek çalışmaya zorlar
 # sürekliliği sağlar fakat pod düzgün çalışır ama içindeki uygulama düzgün çalışmaz ise bunu yakalayamaz
 # bunu ise LivenessProbe lar vasıtasıyla farkedebiliriz, pod içinden bir uygulama claıstırarak içerdeki uygulamanın durumunu gözlemleyebiliriz
 # uygulama içindeki bir endpointe http istek atarak heltcheck yapılarak kontrol sağlanabilir
 # httpGet ve tcp yada herhangi bir dosya kontrolü yapılabilir
-spec:
-  livenesProbe:
-    httpGet:
-      path: /heltcheck
-  	port: 8080
-    periodSeconds: 3
-    initialDelaySeconds: 5 //5 sn bekler 3 sn aralıkla dener
+    spec:
+    livenesProbe:
+        httpGet:
+        path: /heltcheck
+        port: 8080
+        periodSeconds: 3
+        initialDelaySeconds: 5 //5 sn bekler 3 sn aralıkla dener
 
 -------------------------------------------------------------------
 
@@ -151,9 +149,9 @@ spec:
 	volumeMounts:
 	- name: cache-vol
 	  mounthPath: /temp/log
-volumes:
-- name: cache-vol
-  emptydir: {}
+    volumes:
+    - name: cache-vol
+    emptydir: {}
 
 ## hostPath  -> Folder bazlı maplenir container silinsede halen durur
 
