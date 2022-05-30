@@ -139,8 +139,8 @@
 
 
 
-# Persistent volume cluster dışında tutulur bu sayede pod yaşam süresinden bağımsız olur (Azur Disk,aws, google depolama çözümleriyle konuşabilir)
-# emptyDir -> Geçici volum ilk olarak bir Pod bir noda atandıgında oluşturulur ve u Pod o node da çalıştığı sürece var olur. Başlangıçta boştur Pod içindeki containerlar emptyDir volume deki dosyaları okuyabilir ve yazabilir ancak bu birim her kapsayıcıda farklı yollara maplenmiş olabilir pod silindiğinde volume de gider
+## Persistent volume cluster dışında tutulur bu sayede pod yaşam süresinden bağımsız olur (Azur Disk,aws, google depolama çözümleriyle konuşabilir)
+## emptyDir -> Geçici volum ilk olarak bir Pod bir noda atandıgında oluşturulur ve u Pod o node da çalıştığı sürece var olur. Başlangıçta boştur Pod içindeki containerlar emptyDir volume deki dosyaları okuyabilir ve yazabilir ancak bu birim her kapsayıcıda farklı yollara maplenmiş olabilir pod silindiğinde volume de gider
 
 	volumeMounts:
 	- name: cache-vol
@@ -149,7 +149,7 @@
     - name: cache-vol
     emptydir: {}
 
-# hostPath  -> Folder bazlı maplenir container silinsede halen durur
+## hostPath  -> Folder bazlı maplenir container silinsede halen durur
 
 -----------------------------------------------------------------------
 
