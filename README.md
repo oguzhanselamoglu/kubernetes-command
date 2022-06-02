@@ -166,3 +166,18 @@
     kubectl describe secret -n kube-system
 
     kubectl proxy
+
+## Kubernetes deki node ların kaynak kullanımını verir
+    kubectl top nodes
+
+## Kubernetes autoscale listesini verir
+    kubectl get hpa -A
+
+## Kubernetes tarafında pod ları listelerken filtreleme özelliği
+    kubectl get pods --field-selector status.phase=Running -o json 
+
+## Kubernetes tarafında pod ları listelerken filtreleme ve filtreleni silme
+    kubectl get pods --field-selector status.phase=Failed -o json | kubectl delete -f -
+
+## Kubernetes oluşan tüm eventları listeleme
+    kubectl get events --sort-by='.metadata.creationTimestamp' -A
