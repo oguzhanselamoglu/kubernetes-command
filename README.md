@@ -17,7 +17,9 @@
 ## Varsayılan contexti verir
 	kubectl config current-context
 
-## Başka bir sunucu da işlem yapmak istersem docker da yaptıgımız gibi context değiştirmek gerekiyor. Docker daki karşılığı 'docker context use <contextname>'
+## Başka bir sunucu da işlem yapmak istersem docker da yaptıgımız gibi context değiştirmek gerekiyor. Docker daki karşılığı 
+    docker context use <contextname>'
+
 ## Bundan sonrakiş tüm komutlar seçili context de çalışır
 	kubectl config use-context <contextname>
 
