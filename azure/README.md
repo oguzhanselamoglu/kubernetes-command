@@ -20,5 +20,11 @@
 ## Container registry ye Login olma
 -> az acr login --name xxxacr
 
+## Install the Kubernetes CLI
+->  az aks install-cli
+
+## Connect to cluster using kubectl
+-> az aks get-credentials --resource-group xxxResourceGroup --name xxxCluster
+
 ## Login server address
 -> az acr list --resource-group xxxResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
