@@ -183,3 +183,8 @@
 
 ## Kubernetes oluşan tüm eventları listeleme
     kubectl get events --sort-by='.metadata.creationTimestamp' -A
+
+## pod üzerinde komut çalıştırma bash ile
+    kubectl exec -it podname -- \bin\sh
+    apt install  postgresql-client
+    psql -h serveraddress -d dbname -U username   
