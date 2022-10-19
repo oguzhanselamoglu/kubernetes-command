@@ -188,3 +188,9 @@
     kubectl exec -it podname -- \bin\sh
     apt install  postgresql-client
     psql -h serveraddress -d dbname -U username   
+
+## kubernetes config dosyasını görüntüleme
+    kubectl config view
+
+## kubernetes config dosyasını taşımak için tüm içeriği elde ediyoruz
+    kubectl config view --flatten
