@@ -195,3 +195,10 @@
     apt install  postgresql-client
     psql -h serveraddress -d dbname -U username   
 
+
+
+## kubeconfig dosyasını merge etme
+    cp config config_bk
+    KUBECONFIG=config:kodcluster.yaml kubectl config view --flatten > config_tmp
+    kubectl config get-clusters --kubeconfig=config_tmp
+    mv config_tmp config
