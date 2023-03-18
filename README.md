@@ -8,3 +8,7 @@ Aktif olarak kullandıgım kubernetes ve azure cli komutlarını topladıgım re
 
 ## azure cli komuttları
 * azure folderı altında
+
+
+## Argo CD kurulum
+* argocd folderı altında 

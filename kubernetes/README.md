@@ -202,3 +202,12 @@
     KUBECONFIG=config:kodcluster.yaml kubectl config view --flatten > config_tmp
     kubectl config get-clusters --kubeconfig=config_tmp
     mv config_tmp config
+
+
+
+Error from server (InternalError): error when creating benoni-ingress.yaml: Internal error occurred: failed calling webhook validate.nginx.ingress.kubernetes.io: Post https://rke2-ingress-nginx-controller-admission.kube-system.svc:443/networking/v1beta1/ingresses?timeout=10s: dial tcp 10.43.217.216:443: connect: connection refused
+
+hatası
+
+    kubectl get validatingwebhookconfigurations 
+    kubectl delete validatingwebhookconfigurations [configuration-name]`
