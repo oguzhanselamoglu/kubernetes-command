@@ -211,3 +211,8 @@ hatası
 
     kubectl get validatingwebhookconfigurations 
     kubectl delete validatingwebhookconfigurations [configuration-name]`
+
+
+ssh ile bağlanırken finger print oluşuyor
+mevcut finger printleri silmek için 
+rm -f .ssh/known_hosts
