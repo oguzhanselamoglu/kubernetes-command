@@ -216,3 +216,34 @@ hatası
 ssh ile bağlanırken finger print oluşuyor
 mevcut finger printleri silmek için 
 rm -f .ssh/known_hosts
+
+
+
+kubectl get ingress -A
+iptables -L
+
+kubectl get pod -n ingress
+kubectl get svc -n ingress
+
+ # namespace listesi
+ kubectl get ns
+
+
+  apt install iputils-ping
+
+  kubectl delete ingress veboniingress
+  kubectl edit ingressclass nginx -n ingress
+  kubectl get ingressclass
+  kubectl describe svc ingress-nginx-ingress -n ingress
+  apt install net-tools
+
+    helm install ingress nginx-stable/nginx-ingress -n ingress --set controller.service.loadBalancerIP=192.168.40.242,rbac.create=true
+    helm delete ingress -n ingress 
+    kubectl delete ns metallb-system 
+    kubectl get adresspool -A
+     helm ls -n ingress
+     apt install vim
+     helm repo update
+     sudo apt-get install helm
+     sudo apt-get install apt-transport-https --yes
+      curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
