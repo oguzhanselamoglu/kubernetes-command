@@ -237,6 +237,9 @@ kubectl get svc -n ingress
   kubectl describe svc ingress-nginx-ingress -n ingress
   apt install net-tools
 
+# sudo yetkisi
+sudo su  
+
 # Helm üzerinden ingress kurulumu 
     helm install ingress nginx-stable/nginx-ingress -n ingress --set controller.service.loadBalancerIP=192.168.40.242,rbac.create=true
     helm delete ingress -n ingress 
