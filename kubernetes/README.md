@@ -251,3 +251,7 @@ sudo su
      sudo apt-get install helm
      sudo apt-get install apt-transport-https --yes
       curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+
+
+       openssl rsa -in private-enc.key -out private.key 
+       openssl pkcs12 -in blabla.com.pfx -nocerts -out private-enc.key  
