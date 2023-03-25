@@ -201,6 +201,7 @@
     cp config config_bk
     KUBECONFIG=config:kodcluster.yaml kubectl config view --flatten > config_tmp
     kubectl config get-clusters --kubeconfig=config_tmp
+    kubectl config get-contexts --kubeconfig=config_tmp
     mv config_tmp config
 
 
