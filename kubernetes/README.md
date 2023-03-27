@@ -206,6 +206,33 @@
 
 
 
+# make a backup
+cd ~/.kube/
+cp config config.bak
+
+# merge both kube config files
+$ENV:KUBECONFIG = "C:\Users\mrjamiebowman\.kube\config;C:\Users\mrjamiebowman\.kube\config-devbox"
+
+# verify that the variable is set
+$ENV:KUBECONFIG
+
+# output to temp file
+kubectl config view --flatten > config-merged
+
+# verify that config-merged is correct
+kubectl --kubeconfig=config-merged config get-clusters
+
+# delete backup
+rm config
+
+# move merged file to config
+mv config-merged config
+
+# remove (optional)
+rm config.bak
+
+
+
 Error from server (InternalError): error when creating benoni-ingress.yaml: Internal error occurred: failed calling webhook validate.nginx.ingress.kubernetes.io: Post https://rke2-ingress-nginx-controller-admission.kube-system.svc:443/networking/v1beta1/ingresses?timeout=10s: dial tcp 10.43.217.216:443: connect: connection refused
 
 hatası
