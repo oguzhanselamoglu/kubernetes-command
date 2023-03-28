@@ -232,6 +232,12 @@ mv config-merged config
 rm config.bak
 
 
+# delete config
+kubectl config unset contexts.kubernetes-admin@kubernetes
+kubectl config unset users.kubernetes-admin
+kubectl config unset clusters.kubernetes
+
+
 
 Error from server (InternalError): error when creating benoni-ingress.yaml: Internal error occurred: failed calling webhook validate.nginx.ingress.kubernetes.io: Post https://rke2-ingress-nginx-controller-admission.kube-system.svc:443/networking/v1beta1/ingresses?timeout=10s: dial tcp 10.43.217.216:443: connect: connection refused
 
@@ -269,7 +275,7 @@ kubectl get svc -n ingress
 sudo su  
 
 # Helm üzerinden ingress kurulumu 
-    helm install ingress nginx-stable/nginx-ingress -n ingress --set controller.service.loadBalancerIP=192.168.40.242,rbac.create=true
+    helm install ingress nginx-stable/nginx-ingress -n ingress --set controller.service.loadBalancerIP=85.111.58.4,rbac.create=true
     helm delete ingress -n ingress 
     kubectl delete ns metallb-system 
     kubectl get adresspool -A
