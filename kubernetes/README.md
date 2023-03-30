@@ -194,7 +194,7 @@
     kubectl exec -it podname -- \bin\sh
     apt install  postgresql-client
     psql -h serveraddress -d dbname -U username   
-
+    psql -h 172.22.226.100 -d veboni-0277acab-c91a-42d4-9556-bc77826b4915 -U postgres
 
 
 ## kubeconfig dosyasını merge etme
@@ -275,7 +275,7 @@ kubectl get svc -n ingress
 sudo su  
 
 # Helm üzerinden ingress kurulumu 
-    helm install ingress nginx-stable/nginx-ingress -n ingress --set controller.service.loadBalancerIP=85.111.58.4,rbac.create=true
+    helm install ingress nginx-stable/nginx-ingress -n ingress --set controller.service.loadBalancerIP=,rbac.create=true
     helm delete ingress -n ingress 
     kubectl delete ns metallb-system 
     kubectl get adresspool -A
