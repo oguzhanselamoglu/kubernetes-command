@@ -289,3 +289,6 @@ sudo su
 
        openssl rsa -in private-enc.key -out private.key 
        openssl pkcs12 -in blabla.com.pfx -nocerts -out private-enc.key  
+
+
+       >docker container exec -it 8531cf4e3139 /bin/bash
