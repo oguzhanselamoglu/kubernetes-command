@@ -1,0 +1,68 @@
+
+# Linux Agent
+
+A Linux agent can build and deploy different kinds of apps, including Java and Android apps. Microsoft support Ubuntu, Red Hat, and CentOS.
+
+
+
+## Prepare permissions
+
+As a one-time step, you must register the agent [Description](https://learn.microsoft.com/en-us/azure/devops/organizations/security/about-security-roles?view=azure-devops#agent-queue-security-roles)
+
+  
+## Authenticate with a personal access token (PAT)
+
+- Sign in with the user account you plan to use in your Azure DevOps organization (https://dev.azure.com/{your_organization}).
+- From your home page, open your user settings, and then select Personal access tokens.
+- Create a personal access token.
+- Tüm platformlara destek
+
+  
+## Download and configure the agent
+
+- Log on to the machine using the account for which you've prepared permissions as explained above.
+- in your web browser, sign in to Azure Pipelines, and navigate to the Agent pools tab:
+- Choose Azure DevOps, Organization settings.
+- Choose Agent pools.
+- Select the Default pool, select the Agents tab, and choose New agent.
+- On the Get the agent dialog box, click Linux.
+- On the right pane, click the Download button.
+- Follow the instructions on the page.
+- Unpack the agent into the directory of your choice. cd to that directory and run ./config.sh.
+
+## Server URL
+Azure Pipelines: https://dev.azure.com/{your-organization}
+
+## Run as a systemd service
+If your agent is running on these operating systems you can run the agent as a systemd service:
+Change to the agent directory
+
+```bash
+  cd ~/myagent$
+```
+
+install
+```bash
+  sudo ./svc.sh install [username]
+```
+this command creates a service file that points to ./runsvc.sh. This script sets up the environment (more details below) and starts the agents host. If username parameter is not specified then the username is taken from the $SUDO_USER environment variable which is set by sudo command. This variable is always equal to the name of the user who invoked the sudo command.
+
+start
+```bash
+  sudo ./svc.sh start
+```
+
+status
+```bash
+  sudo ./svc.sh status
+```
+
+stop
+```bash
+  sudo ./svc.sh stop
+```
+
+uninstall
+```bash
+  sudo ./svc.sh uninstall
+```
