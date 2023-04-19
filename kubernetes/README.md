@@ -292,3 +292,9 @@ sudo su
 
 
        >docker container exec -it 8531cf4e3139 /bin/bash
+
+## get secrets
+kubectl get secrets
+
+## Export secrets
+kubectl get secret my-secret-name -o yaml > my-secret-name.yaml
