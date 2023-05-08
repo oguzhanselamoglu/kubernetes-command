@@ -192,6 +192,7 @@
 
 ## pod üzerinde komut çalıştırma bash ile
     kubectl exec -it podname -- \bin\sh
+    kubectl exec -it identityapi-deployment-798cc98bb8-9hnzn -- printenv
     apt install  postgresql-client
     psql -h serveraddress -d dbname -U username   
     psql -h 172.22.226.100 -d veboni-0277acab-c91a-42d4-9556-bc77826b4915 -U postgres
