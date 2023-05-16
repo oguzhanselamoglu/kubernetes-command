@@ -66,3 +66,5 @@ uninstall
 ```bash
   sudo ./svc.sh uninstall
 ```
+
+rm -r -f 14
