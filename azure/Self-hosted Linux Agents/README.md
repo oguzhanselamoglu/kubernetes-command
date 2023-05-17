@@ -68,3 +68,57 @@ uninstall
 ```
 
 rm -r -f 14
+
+df -h --total
+
+
+sudo apt-get install git
+
+
+## Docker Engine Set up the repository
+Before you install Docker Engine for the first time on a new host machine, you need to set up the Docker repository. Afterward, you can install and update Docker from the repository.
+
+```bash
+  sudo apt-get update
+  sudo apt-get install ca-certificates curl gnupg
+```
+
+Add Docker’s official GPG key:
+
+```bash
+  sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+
+Use the following command to set up the repository:
+```bash
+  echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+## Install Docker Engine
+Update the apt package index:
+
+```bash
+  sudo apt-get update
+```
+
+To install the latest version, run:
+```bash
+  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+Verify that the Docker Engine installation is successful by running the hello-world image.
+
+```bash
+  sudo docker run hello-world
+```
+
+
+sudo usermod -a -G docker $USER
+sudo chown root:docker /var/run/docker.sock
+chmod 777 /var/run/docker.sock
