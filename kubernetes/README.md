@@ -285,7 +285,7 @@ sudo su
      helm repo update
      sudo apt-get install helm
      sudo apt-get install apt-transport-https --yes
-      curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+    curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
 
 
        openssl rsa -in private-enc.key -out private.key 
@@ -299,3 +299,10 @@ kubectl get secrets
 
 ## Export secrets
 kubectl get secret my-secret-name -o yaml > my-secret-name.yaml
+
+## Create secret
+kubectl create secret docker-registry <secret-name> \
+    --namespace <namespace> \
+    --docker-server=<container-registry-name>.azurecr.io \
+    --docker-username=<service-principal-ID> \
+    --docker-password=<service-principal-password>
