@@ -28,3 +28,7 @@
 
 ## Login server address
 -> az acr list --resource-group xxxResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
+
+
+## List resource group
+az group list
