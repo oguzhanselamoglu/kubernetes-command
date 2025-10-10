@@ -342,6 +342,6 @@ kubectl create secret docker-registry <secret-name> \
 
     kubectl create secret docker-registry veboniDevOps\
     --namespace dev \
-    --docker-server=veboniacr.azurecr.io \
-    --docker-username=veboniacr \
-    --docker-password=sV2/RWItkJhd2XoimKZ5vHaPsruNQWhI
+    --docker-server=acr.azurecr.io \
+    --docker-username=acrusername \
+    --docker-password=pasword****
