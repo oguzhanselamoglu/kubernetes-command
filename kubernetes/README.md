@@ -345,3 +345,6 @@ kubectl create secret docker-registry <secret-name> \
     --docker-server=acr.azurecr.io \
     --docker-username=acrusername \
     --docker-password=pasword****
+
+
+kubectl config view --raw
